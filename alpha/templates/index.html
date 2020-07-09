@@ -30,10 +30,10 @@
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
 						<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
-							<div class="logo"><a href="index.html">Travello</a></div>
+							<div class="logo"><a href="/">Travello</a></div>
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
-									<li class="active"><a href="index.html">Home</a></li>
+									<li class="active"><a href="/">Home</a></li>
 									
 
 									{% if user.is_authenticated %}
@@ -42,7 +42,7 @@
 									<li><a href="accounts/register">Register</a></li>
 									<li><a href="accounts/login">Login</a></li>
 									{% endif %}
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="/">Contact</a></li>
 								</ul>
 							</nav>
 							<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
@@ -275,7 +275,12 @@
 
 							</div>
 							<div class="destination_content">
-								<div class="destination_title"><a href="{% static 'destinations.html' %}">{{dest.name}}</a></div>
+
+								{% if user.is_authenticated %}
+								<div class="destination_title"><a href="accounts/clckdestination">{{dest.name}}</a></div>
+								{% else %}
+								<div class="destination_title"><a href="accounts/login">{{dest.name}}</a></div>
+								{% endif %}
 								<div class="destination_subtitle"><p>{{dest.desc}}</p></div>
 								<div class="destination_price">From ${{dest.price}}</div>
 							</div>

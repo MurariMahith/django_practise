@@ -16,12 +16,12 @@ def register(request):
 
         if password1==password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request,'Username Taken')
+                messages.info(request,'Username Taken... try with different username')
                 print("username taken")
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request,'email already used')
-                print("email already used")
+                print("email already used... try with another email")
                 return redirect('register')
             else:
                 user=User.objects.create_user(username=username,password=password1,first_name=first_name,email=email,last_name=last_name)
@@ -31,7 +31,7 @@ def register(request):
                 return redirect('login')
 
         else:
-            messages.info(request,'Password not matching...')
+            messages.info(request,'Password not matching... retry registering')
             print("password not matching")
             return redirect('register')
         
@@ -60,3 +60,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def clckdestination(request):
+    return render(request,'clckdestination.html')
